@@ -15,7 +15,7 @@ def conectar_rabbit():
 
 def callback(ch, method, properties, body):
     mensagem = json.loads(body)
-    print(f"📩 Mensagem recebida: {mensagem}")
+    print(f"Mensagem recebida: {mensagem}")
 
 def consumir():
     connection = conectar_rabbit()
@@ -23,7 +23,7 @@ def consumir():
     channel.queue_declare(queue="fila_mensagens")
 
     channel.basic_consume(queue="fila_mensagens", on_message_callback=callback, auto_ack=True)
-    print("👂 Aguardando mensagens. Pressione CTRL+C para sair.")
+    print("Aguardando mensagens. Pressione CTRL+C para sair.")
     channel.start_consuming()
 
 if __name__ == "__main__":
